@@ -70,6 +70,21 @@ res
 check_genes = c("THY1" , "SFMBT2" , "PASD1")
 res_df[res_df$Gene.Name %in% check_genes,]
 
+sig <- subset(res,
+              padj < 0.05 &
+                abs(log2FoldChange) > 1)
+head(sig)
+upregulated <- subset(res,
+                      padj < 0.05 &
+                        log2FoldChange > 1)
+downregulated <- subset(res,
+                        padj < 0.05 &
+                          log2FoldChange < -1)
+
+nrow(upregulated)
+
+nrow(downregulated)
+
 
 plotMA(res)
 
